@@ -5,6 +5,7 @@ import re
 from os import listdir
 from os.path import isfile, join
 from socket import *
+from valqtools import Qtimer
 
 def getRemoteFileList( path ):
 	response = urllib.request.urlopen("http://192.168.8.2/command.cgi?op=100&DIR="+path,timeout=5).read()
@@ -36,11 +37,12 @@ remotePath="/DCIM/100__TSB"
 localPath="./img/"
 while True:
 	try:
-		print("Starting")
+		timer = Qtimer (1)
+		timer.lap("Starting")
 		localFiles=getLocalFileList(localPath)
 		output = getRemoteFileList(remotePath)
 		sdFiles = photoList(output)
-		print("Read remote files")
+		timer.lap("Read remote files")
 		diff=compareFolders(localFiles,sdFiles)
 		downloadFiles(localPath,remotePath,diff)
 		time.sleep(5)		
