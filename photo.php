@@ -1,5 +1,5 @@
 <?php 
-	require_once 'controller.php'; //melyik könyvtárat olvassuk be? $controller=n ew Controller( 'img'); 
+	require_once 'controller.php'; //which library are we reading? $controller=new Controller( 'img'); 
 
 	$c=new Controller();
 ?>
