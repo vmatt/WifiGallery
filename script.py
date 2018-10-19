@@ -36,16 +36,16 @@ remotePath="/DCIM/100__TSB"
 localPath="./img/"
 while True:
 	try:
-		print("Kezdés")
+		print("Starting")
 		localFiles=getLocalFileList(localPath)
 		output = getRemoteFileList(remotePath)
 		sdFiles = photoList(output)
-		print("Távoli fájlok beolvasva")
+		print("Read remote files")
 		diff=compareFolders(localFiles,sdFiles)
 		downloadFiles(localPath,remotePath,diff)
 		time.sleep(5)		
 	except urllib.error.URLError:
-		print ("Nem érhető el a kártya.")
+		print ("Wifi card not available")
 	except timeout:
-		print ("Időtúllépés")
+		print ("Timeout")
 		
